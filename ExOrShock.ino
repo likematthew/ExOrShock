@@ -45,7 +45,7 @@ void loop() {
   
       if(!start)
       {
-        if(wert > 120)
+        if(wert < 220)
         {
           start = true;
           zeit  = millis();
@@ -56,7 +56,7 @@ void loop() {
       {
         int sek = (millis() - zeit) / 1000;
         // LOSE
-        if(wert > 110 && sek > seconds - 1)
+        if(wert < 400 && sek > seconds - 1)
         {
           startShocking();
           delay(200);
@@ -64,7 +64,7 @@ void loop() {
           endDrinking();
         }
         // WIN
-        if(wert < 80 && sek < seconds - 1)
+        if(wert > 400 && sek < seconds - 1)
         {
           digitalWrite(LEDGreen, HIGH);
           delay(500);
