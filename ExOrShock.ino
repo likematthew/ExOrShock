@@ -1,32 +1,87 @@
 #include <SoftwareSerial.h>
 
 bool setupStart = false;
-bool start      = false;
-long zeit       = 0;
+bool start = false;
+long startTime = 0;
 
-int  sensor     = A0;
-int  shocker    = 2;
+int valueMax = 400;
+int valueMin = 220;
 
-int  LEDBlue    = 5;
-int  LEDGreen   = 6;
-int  LEDRed     = 7;
+int  sensorOben = A0;
+int  sensorUnten = A1;
+int  shocker = 2;
+
+int  LEDBlue = 5;
+int  LEDGreen = 6;
+int  LEDRed = 7;
+
+long LEDBlueTime = 0;
+bool LEDBlueBlink = false;
 
 SoftwareSerial bt(11, 10);
 
-void setup() {
+void setup() 
+{
   bt.begin(9600);
   Serial.begin(9600);
   
-  pinMode(LEDBlue,  OUTPUT);
-  pinMode(LEDRed,   OUTPUT);
+  pinMode(LEDBlue, OUTPUT);
+  pinMode(LEDRed, OUTPUT);
   pinMode(LEDGreen, OUTPUT);
 
-  pinMode(sensor,   INPUT);
-  pinMode(shocker,  OUTPUT);
+  pinMode(sensorOben, INPUT);
+  pinMode(sensorUnten, INPUT);
+  pinMode(shocker, OUTPUT);
+
+  systemCheck();
+  calibration();
 }
 
-void loop() {
+void systemCheck()
+{
+  digitalWrite(LEDBlue, HIGH);
+  digitalWrite(LEDGreen, HIGH);
+  digitalWrite(LEDRed, HIGH);
+  delay(1000);
+  digitalWrite(LEDBlue, LOW);
+  digitalWrite(LEDGreen, LOW);
+  digitalWrite(LEDRed, LOW);
+  delay(1000);
+  startShocking();
+  delay(200);
+  stopShocking();
+  delay(1000);
+}
+
+void calibration()
+{
+  int i = 0;
+  int valueUpper = 0;
+  while(i < 15)
+  {
+    LED(LEDBlue, 200);
+    LED(LEDGreen, 200);
+    LED(LEDRed, 200);
+    delay(200);
+    valueUpper += analogRead(sensorOben);
+    Serial.println(valueUpper);
+    i++;
+  }
+  valueMin = (valueUpper / i) + 6;
+  Serial.println(valueMin);
+  Serial.println();
+}
+
+void loop() 
+{
+  // Blue LED blinking while waiting for Bluetooth data
+  delay(500);
+  LED(LEDBlue, 500);
+  
   if (bt.available()) {
+    // Getting Bluetooth data
+    // Blue LED shines while waiting for start
+    digitalWrite(LEDBlue,  HIGH);
     String input = "";
     while(bt.available())
     {
@@ -35,45 +90,57 @@ void loop() {
     }
     int seconds = input.toInt();
     setupStart = true;
-
+    
     while(setupStart)
     {
-      delay(100);
+      // Reading values from moisture sensors
+      int valueUpper = analogRead(sensorOben);
+      int valueLower = analogRead(sensorUnten);
+      Serial.println(valueUpper);
       
-      int wert = analogRead(sensor);
-      Serial.println(wert);
-  
       if(!start)
       {
-        if(wert < 220)
+        // Starting when the person starts drinking
+        if(valueUpper < valueMin)
         {
           start = true;
-          zeit  = millis();
-          digitalWrite(LEDBlue, HIGH);
+          startTime = millis();
+          LEDBlueTime = millis();
+          LEDBlueBlink = false;
         }
       }
       else
       {
-        int sek = (millis() - zeit) / 1000;
+        // Blue LED blinkink faster while drinking
+        if((millis() - LEDBlueTime) > 100)
+        {
+          LEDBlueTime = millis();
+          if(LEDBlueBlink) {
+            digitalWrite(LEDBlue,  HIGH);
+          } else {
+            digitalWrite(LEDBlue,  LOW);
+          }
+          LEDBlueBlink = !LEDBlueBlink;
+        }
+        
+        int sek = (millis() - startTime) / 1000;
+        
+        // WIN
+        if(valueUpper > valueMax && valueLower > valueMax && sek < seconds - 1)
+        {
+          LED(LEDGreen, 2000);
+          endDrinking();
+        }
         // LOSE
-        if(wert < 400 && sek > seconds - 1)
+        if(sek > seconds - 1)
         {
           startShocking();
           delay(200);
           stopShocking();
           endDrinking();
         }
-        // WIN
-        if(wert > 400 && sek < seconds - 1)
-        {
-          digitalWrite(LEDGreen, HIGH);
-          delay(500);
-          digitalWrite(LEDGreen, LOW);
-          endDrinking();
-        }
       }
     }
-    delay(5000);
   }
 }
 
@@ -94,4 +161,11 @@ void endDrinking()
   digitalWrite(LEDBlue, LOW);
   setupStart = false;
   start = false;   
+}
+
+void LED(int pLED, int pTime)
+{
+  digitalWrite(pLED, HIGH);
+  delay(pTime);
+  digitalWrite(pLED, LOW);
 }
