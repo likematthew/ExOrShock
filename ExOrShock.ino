@@ -18,7 +18,7 @@ int  LEDRed = 7;
 long LEDBlueTime = 0;
 bool LEDBlueBlink = false;
 
-SoftwareSerial bt(11, 10);
+SoftwareSerial bt(10, 11);
 
 void setup() 
 {
@@ -48,7 +48,7 @@ void systemCheck()
   digitalWrite(LEDRed, LOW);
   delay(1000);
   startShocking();
-  delay(200);
+  delay(100);
   stopShocking();
   delay(1000);
 }
@@ -90,6 +90,7 @@ void loop()
     }
     int seconds = input.toInt();
     setupStart = true;
+    Serial.println(seconds);
     
     while(setupStart)
     {
@@ -135,7 +136,7 @@ void loop()
         if(sek > seconds - 1)
         {
           startShocking();
-          delay(200);
+          delay(100);
           stopShocking();
           endDrinking();
         }
