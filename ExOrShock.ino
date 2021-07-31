@@ -1,14 +1,15 @@
-#include <SoftwareSerial.h>
+ #include <SoftwareSerial.h>
 
 bool setupStart = false;
 bool start = false;
 long startTime = 0;
 
-int valueMax = 400;
-int valueMin = 220;
+int valueUpperMax = 0;
+int valueLowerMax = 0;
+int valueUpperMin = 0;
 
-int  sensorOben = A0;
-int  sensorUnten = A1;
+int  sensorUpper = A0;
+int  sensorLower = A1;
 int  shocker = 2;
 
 int  LEDBlue = 5;
@@ -29,8 +30,8 @@ void setup()
   pinMode(LEDRed, OUTPUT);
   pinMode(LEDGreen, OUTPUT);
 
-  pinMode(sensorOben, INPUT);
-  pinMode(sensorUnten, INPUT);
+  pinMode(sensorUpper, INPUT);
+  pinMode(sensorLower, INPUT);
   pinMode(shocker, OUTPUT);
 
   systemCheck();
@@ -47,28 +48,48 @@ void systemCheck()
   digitalWrite(LEDGreen, LOW);
   digitalWrite(LEDRed, LOW);
   delay(1000);
-  startShocking();
-  delay(100);
-  stopShocking();
-  delay(1000);
 }
 
 void calibration()
 {
+  // Calibration of both maximal values
   int i = 0;
-  int valueUpper = 0;
+  while(i < 15)
+  {
+    LED(LEDRed, 200);
+    LED(LEDGreen, 200);
+    LED(LEDBlue, 200);
+    delay(200);
+    valueUpperMax += analogRead(sensorUpper);
+    Serial.println(valueUpperMax);
+    valueLowerMax += analogRead(sensorLower);
+    Serial.println(valueLowerMax);
+    i++;
+  }
+  valueUpperMax = (valueUpperMax / i) - 10; // The 10 is for tolerance
+  Serial.println(valueUpperMax);
+  valueLowerMax = (valueLowerMax / i) - 10; // The 10 is for tolerance
+  Serial.println(valueLowerMax);
+  Serial.println();
+
+  delay(300);
+  LED(LEDBlue, 15000);
+  delay(500);
+
+  // Calibration of the minimal value
+  i = 0;
   while(i < 15)
   {
     LED(LEDBlue, 200);
     LED(LEDGreen, 200);
     LED(LEDRed, 200);
     delay(200);
-    valueUpper += analogRead(sensorOben);
-    Serial.println(valueUpper);
+    valueUpperMin += analogRead(sensorUpper);
+    Serial.println(valueUpperMin);
     i++;
   }
-  valueMin = (valueUpper / i) + 6;
-  Serial.println(valueMin);
+  valueUpperMin = (valueUpperMin / i) + 2; // The 2 is for tolerance
+  Serial.println(valueUpperMin);
   Serial.println();
 }
 
@@ -95,14 +116,16 @@ void loop()
     while(setupStart)
     {
       // Reading values from moisture sensors
-      int valueUpper = analogRead(sensorOben);
-      int valueLower = analogRead(sensorUnten);
+      int valueUpper = analogRead(sensorUpper);
+      int valueLower = analogRead(sensorLower);
       Serial.println(valueUpper);
+      Serial.println(valueLower);
+      Serial.println();
       
       if(!start)
       {
         // Starting when the person starts drinking
-        if(valueUpper < valueMin)
+        if(valueUpper < valueUpperMin)
         {
           start = true;
           startTime = millis();
@@ -112,7 +135,7 @@ void loop()
       }
       else
       {
-        // Blue LED blinkink faster while drinking
+        // Blue LED blinking faster while drinking
         if((millis() - LEDBlueTime) > 100)
         {
           LEDBlueTime = millis();
@@ -127,7 +150,7 @@ void loop()
         int sek = (millis() - startTime) / 1000;
         
         // WIN
-        if(valueUpper > valueMax && valueLower > valueMax && sek < seconds - 1)
+        if(valueUpper > valueUpperMax && valueLower > valueLowerMax && sek < seconds - 1)
         {
           LED(LEDGreen, 2000);
           endDrinking();
