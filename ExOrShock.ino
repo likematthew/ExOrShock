@@ -4,9 +4,9 @@ bool setupStart = false;
 bool start = false;
 long startTime = 0;
 
-int valueUpperMax = 0;
-int valueLowerMax = 0;
-int valueUpperMin = 0;
+int valueUpperMax = 170; // Needs to be set manually
+int valueLowerMax = 160; // Needs to be set manually
+int valueUpperMin = 0; // Will be set automatically
 
 int  sensorUpper = A0;
 int  sensorLower = A1;
@@ -21,7 +21,7 @@ bool LEDBlueBlink = false;
 
 SoftwareSerial bt(10, 11);
 
-void setup() 
+void setup()
 {
   bt.begin(9600);
   Serial.begin(9600);
@@ -52,32 +52,8 @@ void systemCheck()
 
 void calibration()
 {
-  // Calibration of both maximal values
-  int i = 0;
-  while(i < 15)
-  {
-    LED(LEDRed, 200);
-    LED(LEDGreen, 200);
-    LED(LEDBlue, 200);
-    delay(200);
-    valueUpperMax += analogRead(sensorUpper);
-    Serial.println(valueUpperMax);
-    valueLowerMax += analogRead(sensorLower);
-    Serial.println(valueLowerMax);
-    i++;
-  }
-  valueUpperMax = (valueUpperMax / i) - 10; // The 10 is for tolerance
-  Serial.println(valueUpperMax);
-  valueLowerMax = (valueLowerMax / i) - 10; // The 10 is for tolerance
-  Serial.println(valueLowerMax);
-  Serial.println();
-
-  delay(300);
-  LED(LEDBlue, 15000);
-  delay(500);
-
   // Calibration of the minimal value
-  i = 0;
+  int i = 0;
   while(i < 15)
   {
     LED(LEDBlue, 200);
@@ -135,8 +111,11 @@ void loop()
       }
       else
       {
+        int sec = (millis() - startTime) / 1000;
+        int blinkingTime = 50 + (float)(seconds - sec) / (float)seconds * 250;
+        
         // Blue LED blinking faster while drinking
-        if((millis() - LEDBlueTime) > 100)
+        if((millis() - LEDBlueTime) > blinkingTime)
         {
           LEDBlueTime = millis();
           if(LEDBlueBlink) {
@@ -147,17 +126,17 @@ void loop()
           LEDBlueBlink = !LEDBlueBlink;
         }
         
-        int sek = (millis() - startTime) / 1000;
-        
         // WIN
-        if(valueUpper > valueUpperMax && valueLower > valueLowerMax && sek < seconds - 1)
+        if(valueUpper > valueUpperMax && valueLower > valueLowerMax && sec < seconds - 1)
         {
-          LED(LEDGreen, 2000);
+          digitalWrite(LEDBlue,  LOW);
+          LED(LEDGreen, 10000);
           endDrinking();
         }
         // LOSE
-        if(sek > seconds - 1)
+        if(sec > seconds - 1)
         {
+          digitalWrite(LEDBlue,  LOW);
           startShocking();
           delay(100);
           stopShocking();
