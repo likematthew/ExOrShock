@@ -1,0 +1,31 @@
+
+# ExOrShock
+This is a manual on how to create a cup which shocks you if you don´t empty it in a certain amount of time.
+### Disclaimer
+***This build contains high voltage parts which can hurt you and persons using the cup.***
+***We are not responsible for any harms that are made by trying to recreating the cup with this manual or using it.***
+## How the cup works
+Before you start, you have to fill up the cup to the top with water. After that, you start the cup with switching on an external battery pack which is located on the bottom. After the cup was switched on, all three LEDs (Blue, Green, Red) are going to light up. Then the calibration mode starts, which calibrates the lowest values of the moisture level sensors that are located directly in the cup. During the calibration the three LEDs start lighting from top to bottom fifteen times. After the calibration the blue LED is going to blink slowly. This means the cup waits for a value from the Bluetooth module, which you need to connect to and send the seconds how long it should take to empty the cup. After the seconds were received, the blue LED stays lighted. Now the cup is ready for someone to start drinking. If you now tilt the cup to start drinking, the upper moisture level sensor will notice it and the blue LED will start blinking again. The LED will blink faster and faster while the time is running out. If you finished the cup before the time runs out, the green LED will shine. If you don´t finish the cup before the time runs out, the red LED will shine and you will get shocked. Then the circle starts again and the blue LED will start blinking till you send the time via Bluetooth again.
+## What you need for the build
+First of all, in the best case you have a little bit of programming knowledge and you also know what an Arduino is and how to use it.
+
+### You need these parts for the build
+- An [Arduino Uno Microcontroller](https://www.amazon.de/s?k=Arduino+Uno&i=electronics&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss_2) (Or from another manufacturer)
+- At least two [Moisture Level Sensors](https://www.amazon.de/Capacitive-Moisture-Corrosion-Resistant-Raspberry/dp/B07FLR13FS/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Arduino+Moisture+Level+Sensor&qid=1628542140&sr=8-2)
+- An [DSD TECH HC-06 Bluetooth Module](https://www.amazon.de/s?k=DSD+TECH+HC-06+Bluetooth+Module&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss) (**With a case**)
+- An [5 Volt Relay](https://www.amazon.de/s?k=5+Volt+Relay&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss_2) (Or more if you break one)
+- An [High Voltage Transformator](https://www.amazon.de/gp/product/B078ST3844/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) (From 9 Volt to round about 1000 Kilo Volt)
+- An [9 Volt Block Battery](https://www.amazon.de/s?k=9+Volt+Block+Battery) (Or more to switch them out if they are empty)
+- A [9 Volt Battery Adapter](https://www.amazon.de/s?k=9+Volt+Battery+Adapter&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss_2) for Arduino
+- 6 or more [1.5 Volt LR6 Batteries](https://www.amazon.de/s?k=1.5+Volt+LR6+Batteries&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss)
+- A 1.5 Volt Battery Holder or a 9 Volt Battery Holder (Together you need at least 7 Volt)
+- This [Fitness Cup](https://www.amazon.de/gp/product/B01LSM3GAE/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1) (If you use another one, you also need to change the 3D Model)
+- Many [Jumper Cables](https://www.amazon.de/s?k=Jumper+Cable&i=electronics&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss_2)
+- Aluminium Foil
+### At best you have these tools
+- A 3D Printer (But its also possible to order it online)
+- A Crimping Tool
+- Some Screwdriver
+- Some Pliers
+- A Hot Glue Gun
+- A Soldering Iron
