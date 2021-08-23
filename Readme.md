@@ -39,9 +39,7 @@ In the best case, you already have programming knowledge and also know what an A
 
 * A [High Voltage Transformer](https://www.amazon.de/gp/product/B078ST3844/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)
 	> Should transform 9 volts to round about 1000 kilo volts.
-
 	> But you can also use a different one that is not that strong.
-
 	> <img src="https://burle.me/api/images/ex-or-shock-transformer-1.png" width="300" height="200"/>
 
 
@@ -57,15 +55,12 @@ In the best case, you already have programming knowledge and also know what an A
 * Six or more [1.5 Volt LR6 Batteries](https://www.amazon.de/s?k=1.5+Volt+LR6+Batteries&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss)
 * A 1.5 Volt Battery Holder or a 9 Volt Battery Holder
 	> Together you need at least 7 volts for powering the Arduino.
-
 	> The battery holder should have a switch if possible.
-
 	> <img src="https://burle.me/api/images/ex-or-shock-1-5-volt-battery-holder-1.png" width="300" height="200"/>
 
 
 * This [Fitness Cup](https://www.amazon.de/gp/product/B01LSM3GAE/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
 	> If you use another one, you also need to change the 3D model.
-
 	> Maybe you also want to get more in case you break one.
 
 
@@ -115,7 +110,6 @@ In the best case, you already have programming knowledge and also know what an A
 You need the following files from the ExOrShock [repository](https://github.com/likematthew/ExOrShock):
 * 3D Objects Cover.stl and Housing.stl 
 	> Can be found in /3D Object/V2.
-
 	> For the 3D printed housing.
 
 
@@ -125,7 +119,6 @@ You need the following files from the ExOrShock [repository](https://github.com/
 
 * Fritzing.fzz
 	> Can be found in /Project.
-
 	> This is the circuit diagram.
 
 
@@ -141,7 +134,7 @@ This is an overview of how all the different parts connect together and what pin
 
 Here you can see how all components have to be placed in the housing. In case you are wondering why the Bluetooth module is not checked, it is because it is right under the relay. The 9 volt battery adapter with the battery is glued to the cover of the housing and has its place opposite the transformer. Don't get confused by the transformer's appearance, in this picture I've already covered it with Plasticine to insulate it. Below the relay and the Bluetooth module are the USB hub and the power input of the Arduino. On the opposite side are the three holes for the LEDs. In front of the LED board is the hole for the moisture sensor cables that come out of the cup. The transformer has a hole in the housing on the left and right for its two high-voltage cables. I also insulated these two cables with Plasticine.
 ### 3.3 Housing Preparation
-The housing must be 3D printed from the two 3D model files listed under '*2.4 Project Files*' (Cover.stl, Housing.stl). You can print these with your own 3D printer or send them to an online print provider. The material you use is your choice.
+The housing must be 3D printed from the two 3D model files listed under ' *2.4 Project Files* ' (Cover.stl, Housing.stl). You can print these with your own 3D printer or send them to an online print provider. The material you use is your choice.
 > The material should be some kind of plastic.
 
 
@@ -160,14 +153,13 @@ For the painting I used normal black acrylic varnish and then some clear varnish
 
 <img src="https://burle.me/api/images/ex-or-shock-led-1.png" width="500" height="350"/>
 
-For the LEDs I used the smallest circuit board from the link under '*2. What You Need For The Build*', because it fits perfectly into the housing.
+For the LEDs I used the smallest circuit board from the link under ' *2. What You Need For The Build* ', because it fits perfectly into the housing.
 > You can also use any other circuit board, but note that the distance between the LEDs must be correct in order to fit into the housing. If they don't, you may need to change the housing object in Blender.
 
 
 Now you have to solder the LEDs (red, green, blue) onto the board, preferably in the same places as shown in the picture above. There must be three holes between the LEDs so that the distance is correct. The red LED is the lowest in the housing. After you've soldered the three LEDs in place, you will need three 220 ohm resistors, to which you will solder one to each negative lead of all three LEDs. Then you can connect all three negative cables together so that you only have one negative cable (female) for all three LEDs that you can just plug into the Arduino. At the plus end, I used three (male) jumper cables, each in the same color as the respective LED.
 > As mentioned earlier, I used jumper cables for all cables in the build, which I only cut in half and soldered to the cables / pins of the components if necessary.
-
-> The female connector for the minus is needed because, as you see in the '*3.1 Circuit Diagram*' topic, the minus cable of the LED PCB board connects to the one from the relay. For this you just have to create another minus cable with one female connector for the relay, one male connector for the LED PCB board and one male for the Arduino pin.
+> The female connector for the minus is needed because, as you see in the ' *3.1 Circuit Diagram* ' topic, the minus cable of the LED PCB board connects to the one from the relay. For this you just have to create another minus cable with one female connector for the relay, one male connector for the LED PCB board and one male for the Arduino pin.
 
 
 Lastly, I applied hot glue to all the parts on the lower side of the board to isolate and consolidate all components.
@@ -186,15 +178,10 @@ Since we are going to glue both moisture sensors into the cup and route the cabl
 
 You can now solder your cables into all three holes, as you can see in the picture above. Solder it so that the wires are on the bottom of the sensor.
 > Leave the cables long enough, as you will have to run the cables through the housing after installation.
-
 > Also use cables without a plug at the end or remove them, as the cable may then not fit into the hole in the housing where it has to go through. You can solder the connectors to the cables after:
-
 > * The moisture sensors have been built into the cup
-
 > * The plus and minus cables of both sensors have been connected to one another
-
 > * The cables have been insulated and routed through the hole in the housing
-
 > But this will also be mentioned again later in the manual.
 
 
@@ -223,7 +210,7 @@ Now you can glue the 1.5 volt battery holder to the outside of the cover with ho
 
 <img src="https://burle.me/api/images/ex-or-shock-cup-inside-1.png" width="500" height="350"/>
 
-Now you can hot glue the 9 volt battery adapter on the inside of the cover. Glue it to the opposite side of the transformer, as also mentioned in '*3.2 Components*', so that nothing gets in the way of the battery.
+Now you can hot glue the 9 volt battery adapter on the inside of the cover. Glue it to the opposite side of the transformer, as also mentioned in ' *3.2 Components* ', so that nothing gets in the way of the battery.
 ### 3.6 Cup
 
 <img src="https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-1.png" width="500" height="650"/>
@@ -275,7 +262,7 @@ Next I mounted the screws / threads for the LED board, attached them there and m
 <img src="https://burle.me/api/images/ex-or-shock-housing-threads-3.png" width="500" height="500"/>
 
 ##### 3.7.1.4 Bluetooth Module
-The Bluetooth module doesn't have any holes for screws, so we don't need to install threads for it. As I said under '*2. What You Need For The Build*', you should get a Bluetooth module with a plastic cover around it. Because now we can simply glue this plastic cover into our housing with hot glue. The position is just above the two holes for the Arduino connectors.
+The Bluetooth module doesn't have any holes for screws, so we don't need to install threads for it. As I said under ' *2. What You Need For The Build* ', you should get a Bluetooth module with a plastic cover around it. Because now we can simply glue this plastic cover into our housing with hot glue. The position is just above the two holes for the Arduino connectors.
 > Leave enough space for the relay that will be installed over the Bluetooth module.
 
 
@@ -300,18 +287,18 @@ For the handle I just used some aluminum foil and folded it until I got a nice l
 
 You grasp the handle so that the thumb goes to the left piece of aluminum foil and the rest of the hand to the right piece of aluminum foil.
 ## 3.8 Software
-You can find the program for the cup in the ExOrShock repository as it is described in '*2. What You Need For The Build*'.
+You can find the program for the cup in the ExOrShock repository as it is described in ' *2. What You Need For The Build* '.
 ### 3.8.1 Setting The Moisture Level Sensor Values
-As described below '*1. How The Cup Works*' at the beginning, the cup automatically calibrates the lowest value of the upper moisture sensor. This means that we don't have to worry about this value, but we also need the predetermined breaking values ​​of both sensors if we can say with certainty that the cup is empty (more liquid, lower values ​​/ less liquid, higher values).
+As described below ' *1. How The Cup Works* ' at the beginning, the cup automatically calibrates the lowest value of the upper moisture sensor. This means that we don't have to worry about this value, but we also need the predetermined breaking values ​​of both sensors if we can say with certainty that the cup is empty (more liquid, lower values ​​/ less liquid, higher values).
 > You may now be wondering why we don't calibrate these values ​​right at the beginning when the cup is still empty. This is because the higher values ​​always differ between the liquid in the cup (some are stickier, e.g., beer) and the values ​​also vary from time to time due to the sensor itself.
 
 
 <img src="https://burle.me/api/images/ex-or-shock-program-1.png" width="500" height="450"/>
 
-We have to set a value manually in the program, as described in the comments of the program. To do this, open the ExOrShock program in the Arduino Studio software. Then you might want to use the moisture test program I wrote, which you can find in the ExOrShock repository under '*\Project\Moisture_Level_Test*'. This allows you to evaluate the values ​​yourself. Now just fill the cup with beer and empty it again. While doing this, observe the values ​​of both sensors. Mark the displayed value immediately after emptying the cup. And now set these two values ​​in the ExOrShock program. Then you may have to do a few tries and see if the values ​​are correct for use. After you've done this, you don't have to do it a second time. Your cup is now ready to use.
+We have to set a value manually in the program, as described in the comments of the program. To do this, open the ExOrShock program in the Arduino Studio software. Then you might want to use the moisture test program I wrote, which you can find in the ExOrShock repository under ' *\Project\Moisture_Level_Test* '. This allows you to evaluate the values ​​yourself. Now just fill the cup with beer and empty it again. While doing this, observe the values ​​of both sensors. Mark the displayed value immediately after emptying the cup. And now set these two values ​​in the ExOrShock program. Then you may have to do a few tries and see if the values ​​are correct for use. After you've done this, you don't have to do it a second time. Your cup is now ready to use.
 ## 4. Usage
 
-Now that you've finished building the cup, you're finally ready to use it. This is a more accurate explanation than the '*1. How The Cup Works*'. Now is the time to program the Arduino using the ExOrShock program if you haven't already.
+Now that you've finished building the cup, you're finally ready to use it. This is a more accurate explanation than the ' *1. How The Cup Works* '. Now is the time to program the Arduino using the ExOrShock program if you haven't already.
 
 Before you begin, you must check that the battery pack on the underside is full of batteries and that the shocker's 9 volt battery is properly inserted. If so, you can fill the whole cup with water to the top.
 > At the beginning, the water is required for the calibration mode. The calibration mode measures the lowest value of the upper moisture level sensor (more liquid, lower values ​​/ less liquid, higher values). The program needs this value to recognize when someone starts to drink.
@@ -327,13 +314,12 @@ After calibration, you can connect to the Bluetooth module using a Bluetooth ser
 
 After the seconds have been received, the blue LED remains lit. This means that the cup is now waiting for someone to start drinking.
 
-You grip the handle of the cup as described above below '*3.7.2.2 Handle Installation*'. Then start drinking near the right side of the top moisture level sensor. The sensor detects that someone is starting to drink and starts the countdown. Now the blue LED will flash again and will flash faster and faster as the time runs out.
+You grip the handle of the cup as described above below ' *3.7.2.2 Handle Installation* '. Then start drinking near the right side of the top moisture level sensor. The sensor detects that someone is starting to drink and starts the countdown. Now the blue LED will flash again and will flash faster and faster as the time runs out.
 > If you take a break now, you won't get a shock until the time is up.
 
 
 If you have finished the cup in time, the green LED lights up. If not, the red LED will light, and you will receive a shock from the transformer.
 > The cup evaluates the measured values ​​of both sensors, as soon as the cup has been emptied, the value of both sensors is so high that the Arduino can tell that the cup is empty.
-
 > During the shock, the relay closes, allowing current from the 9 volt battery to flow through the transformer and through the hands of the person who is drinking. 9 volts are not much, but the transformer converts it into many kilo volts. This will feel like a short stab / shock in your hand.
 
 
