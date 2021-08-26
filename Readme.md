@@ -4,9 +4,6 @@ This is a guide on how to create a cup that will shock you if you don't empty it
 ***This build contains high voltage parts that could injure you and those who use the cup.***
 ***I am not responsible for any damage caused by attempting to recreate or use the cup with these instructions.***
 ## 1. How The Cup Works
-
-<img src="https://burle.me/api/images/ex-or-shock-cup-outside-1.png" width="" height=""/>
-
 Before you begin, you need to fill up the cup with water to the top. Then start the cup by switching on an external battery pack located on the bottom. After switching on the cup, all three LEDs (Blue, Green, Red) light up. Then the calibration mode starts, which calibrates the lowest value of the upper moisture level sensor, which is located directly in the cup.
 > As already mentioned, the cup must be filled with water for calibration.
 
@@ -24,23 +21,15 @@ In the best case, you already have programming knowledge and also know what an A
 
 
 * At least two [Moisture Level Sensors](https://www.amazon.de/Capacitive-Moisture-Corrosion-Resistant-Raspberry/dp/B07FLR13FS/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Arduino+Moisture+Level+Sensor&qid=1628542140&sr=8-2)
-
-	> <img src="https://burle.me/api/images/ex-or-shock-moisture-level-sensor-1.png" width="300" height="200"/>
-
-
 * A [DSD TECH HC-06 Bluetooth Module](https://www.amazon.de/s?k=DSD+TECH+HC-06+Bluetooth+Module&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss)
 	> With a plastic case.
 
 
 * A [5 Volt Relay](https://www.amazon.de/s?k=5+Volt+Relay&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss_2)
 
-	> <img src="https://burle.me/api/images/ex-or-shock-relay-1.png" width="300" height="300"/>
-
-
 * A [High Voltage Transformer](https://www.amazon.de/gp/product/B078ST3844/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)
 	> Should transform 9 volts to round about 1000 kilo volts.
 	> But you can also use a different one that is not that strong.
-	> <img src="https://burle.me/api/images/ex-or-shock-transformer-1.png" width="300" height="200"/>
 
 
 * A [9 Volt Block Battery](https://www.amazon.de/s?k=9+Volt+Block+Battery)
@@ -48,15 +37,10 @@ In the best case, you already have programming knowledge and also know what an A
 
 
 * A [9 Volt Battery Adapter](https://www.amazon.de/s?k=9+Volt+Battery+Adapter&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss_2)
-
-	> <img src="https://burle.me/api/images/ex-or-shock-9-volt-battery-1.png" width="300" height="300"/>
-
-
 * Six or more [1.5 Volt LR6 Batteries](https://www.amazon.de/s?k=1.5+Volt+LR6+Batteries&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss)
 * A 1.5 Volt Battery Holder or a 9 Volt Battery Holder
 	> Together you need at least 7 volts for powering the Arduino.
 	> The battery holder should have a switch if possible.
-	> <img src="https://burle.me/api/images/ex-or-shock-1-5-volt-battery-holder-1.png" width="300" height="200"/>
 
 
 * This [Fitness Cup](https://www.amazon.de/gp/product/B01LSM3GAE/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
@@ -65,17 +49,9 @@ In the best case, you already have programming knowledge and also know what an A
 
 
 * Many [Jumper Cables](https://www.amazon.de/s?k=Jumper+Cable&i=electronics&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss_2)
-
-	> <img src="https://burle.me/api/images/ex-or-shock-jumper-cable-1.png" width="300" height="220"/>
-
-
 * At least one [Red/Blue/Green LED](https://www.amazon.de/s?k=Arduino+LED&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss_2)
 * Some 220 Ohm Resistors
 * Some [PCB Boards](https://www.amazon.de/gp/product/B0734XYJPM/ref=ppx_yo_dt_b_asin_title_o01_s01?ie=UTF8&psc=1)
-
-	> <img src="https://burle.me/api/images/ex-or-shock-led-1.png" width="300" height="200"/>
-
-
 * Some [Screws/Nuts and Standoff Spacer](https://www.amazon.de/gp/product/B07RP6CRD5/ref=ppx_yo_dt_b_asin_title_o01_s01?ie=UTF8&psc=1)
 * Some [Shrink Tubing](https://www.amazon.de/ChiliTec-12000058-Chilitec-Schrumpfschlauch-Sortiment-100-teilig/dp/B003H9CJ1Y/ref=sr_1_6?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=schrumpfschlauch&qid=1629294593&sr=8-6)
 * Aluminium Foil
@@ -124,14 +100,8 @@ You need the following files from the ExOrShock [repository](https://github.com/
 
 ## 3. How To Build It
 ### 3.1 Circuit Diagram
-
-<img src="https://burle.me/api/images/ex-or-shock-fritzing-1.png" width="" height=""/>
-
 This is an overview of how all the different parts connect together and what pins each part uses.
 ### 3.2 Components
-
-<img src="https://burle.me/api/images/ex-or-shock-cup-inside-3.png" width="" height=""/>
-
 Here you can see how all components have to be placed in the housing. In case you are wondering why the Bluetooth module is not checked, it is because it is right under the relay. The 9 volt battery adapter with the battery is glued to the cover of the housing and has its place opposite the transformer. Don't get confused by the transformer's appearance, in this picture I've already covered it with Plasticine to insulate it. Below the relay and the Bluetooth module are the USB hub and the power input of the Arduino. On the opposite side are the three holes for the LEDs. In front of the LED board is the hole for the moisture sensor cables that come out of the cup. The transformer has a hole in the housing on the left and right for its two high-voltage cables. I also insulated these two cables with Plasticine.
 ### 3.3 Housing Preparation
 The housing must be 3D printed from the two 3D model files listed under *2.4 Project Files* (Cover.stl, Housing.stl). You can print these with your own 3D printer or send them to an online print provider. The material you use is your choice.
@@ -141,18 +111,9 @@ The housing must be 3D printed from the two 3D model files listed under *2.4 Pro
 If the STL files from above don't work for your printer software, you can also open the two Blender files from the repository in Blender and export them in a different format. You can also customize the 3D objects in Blender to suit your needs. The dimensions for the case are height 13.9 cm, length 11.8 cm, width 10.5 cm.
 #### 3.3.1 Grinding And Painting
 After you've printed the case and cover, you can sand it with some fine sandpaper, so you can paint it in a color of your choice.
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-1.png" width="500" height="380"/>
-
 For the painting I used normal black acrylic varnish and then some clear varnish.
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-2.png" width="500" height="380"/>
-
 ### 3.4 Parts Preparation
 #### 3.4.1 LED PCB Board
-
-<img src="https://burle.me/api/images/ex-or-shock-led-1.png" width="500" height="350"/>
-
 For the LEDs I used the smallest circuit board from the link under *2. What You Need For The Build*, because it fits perfectly into the housing.
 > You can also use any other circuit board, but note that the distance between the LEDs must be correct in order to fit into the housing. If they don't, you may need to change the housing object in Blender.
 
@@ -163,19 +124,8 @@ Now you have to solder the LEDs (red, green, blue) onto the board, preferably in
 
 
 Lastly, I applied hot glue to all the parts on the lower side of the board to isolate and consolidate all components.
-
-<img src="https://burle.me/api/images/ex-or-shock-led-2.png" width="800" height="400"/>
-
 #### 3.4.2 Moisture Level Sensor
-
-<img src="https://burle.me/api/images/ex-or-shock-moisture-level-sensor-1.png" width="500" height="350"/>
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-1.png" width="500" height="650"/>
-
 Since we are going to glue both moisture sensors into the cup and route the cables through two holes to bring them outside, we need to remove the white adapter plastic that you can see in the first picture. For this, I just used pliers to tear it off. The three remaining pins can be made hot and simply pulled out. Now you should have three holes at the end of the humidity sensor, one for GND, one for the voltage input (VCC) and one for measuring (AOUT).
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-2.png" width="500" height="500"/>
-
 You can now solder your cables into all three holes, as you can see in the picture above. Solder it so that the wires are on the bottom of the sensor.
 > Leave the cables long enough, as you will have to run the cables through the housing after installation.
 > Also use cables without a plug at the end or remove them, as the cable may then not fit into the hole in the housing where it has to go through. You can solder the connectors to the cables after:
@@ -185,81 +135,38 @@ You can now solder your cables into all three holes, as you can see in the pictu
 > But this will also be mentioned again later in the manual.
 
 
-<img src="https://burle.me/api/images/ex-or-shock-moisture-level-sensor-3.png" width="500" height="275"/>
-
 I also heat glued all the electrical components to the top of the moisture sensor to make them waterproof.
-
-<img src="https://burle.me/api/images/ex-or-shock-moisture-level-sensor-4.png" width="500" height="300"/>
-
 In the end, both moisture sensors should look something like this.
 ### 3.5 Cover
-
-<img src="https://burle.me/api/images/ex-or-shock-threads-1.png" width="300" height="150"/>
-
 These are the threads and bolts that will be used in this build.
 First, you may want to test each hole in the cover to see if you can stick the first screw from the picture above through it. If they don't fit, you might want to make them a little bigger. I used the soldering iron for this.
-
-<img src="https://burle.me/api/images/ex-or-shock-1-5-volt-battery-holder-1.png" width="500" height="350"/>
-
 Now you can glue the 1.5 volt battery holder to the outside of the cover with hot glue.
-
-<img src="https://burle.me/api/images/ex-or-shock-1-5-volt-battery-holder-2.png" width="500" height="500"/>
-
 > The power wire should be on the same side as the power input holes for the Arduino.
 
 
-<img src="https://burle.me/api/images/ex-or-shock-cup-inside-1.png" width="500" height="350"/>
-
 Now you can hot glue the 9 volt battery adapter on the inside of the cover. Glue it to the opposite side of the transformer, as also mentioned in *3.2 Components*, so that nothing gets in the way of the battery.
 ### 3.6 Cup
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-1.png" width="500" height="650"/>
-
 After both moisture level sensors are prepared, they need to be glued into the cup. For this, we use the flat side with the measurements on it. First, the lower moisture sensor has to be glued into the cup. To do this, I set the sensor to the lowest possible position and then marked the position on the outside where cables need to go through. I burned the hole inside with the soldering iron. After that, I pulled the wires through the hole and put hot glue on the side of the sensor that was going to be glued into the cup. Then I just pressed the sensor against the inside wall of the cup.
 > Stick the sensor so that it is tilted a bit away from the cup so that no liquid gets stuck behind it, because this can lead to incorrect measurements.
 
 
-<img src="https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-2.png" width="500" height="650"/>
-
 This is how it should look like from the outside.
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-3.png" width="500" height="625"/>
-
 The other moisture sensor should be placed at the very top of the cup as you can see on the hot glue in the picture above.
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-4.png" width="500" height="650"/>
-
 The last thing you have to do is connect the two plus and minus cables together so that you only have one plus and one minus cable for both sensors. Then you can put some shrink tubing around the cables to insulate them. Now you can also run all the cables through the larger hole in the middle, as you can see in the picture above. After the cables have been put through the hole, you can solder the (male) plugs to the two measuring cables and the positive and negative cable.
 > Simply cut four male jumper cables in half and solder them to the cables of the sensor.
 
 
 ### 3.7 Housing
 #### 3.7.1 Threads And Bluetooth Module
-
-<img src="https://burle.me/api/images/ex-or-shock-threads-1.png" width="300" height="150"/>
-
 These are the threads and bolts that will be used in this build.
 ##### 3.7.1.1 Cover Threads
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-threads-1.png" width="500" height="375"/>
-
 First I mounted the threads for the cover, a pre-made hole is already available for these threads. I made the threads hot with the soldering iron and then pushed them into the hole. Make sure they stay upright. Then maybe fill the holes around the threads with the soldering iron, making sure they stay in place.
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-threads-4.png" width="500" height="450"/>
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-threads-5.png" width="500" height="625"/>
-
 ##### 3.7.1.2 Arduino Threads
 Then I installed the threads for the Arduino. To do this, I simply put the Arduino in the right place so that the hubs are placed directly in the holes. Then I marked the four screw holes with a pen. Then I heated up each thread again with the soldering iron and pressed it firmly.
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-threads-2.png" width="500" height="375"/>
-
 ##### 3.7.1.3 LED PCB Threads
 Next I mounted the screws / threads for the LED board, attached them there and marked the holes with a pen. Then I also made it hot with the soldering iron and pressed it into place.
 > Make sure that you do not press the threads too hard into the housing.
 
-
-<img src="https://burle.me/api/images/ex-or-shock-housing-threads-3.png" width="500" height="500"/>
 
 ##### 3.7.1.4 Bluetooth Module
 The Bluetooth module doesn't have any holes for screws, so we don't need to install threads for it. As I said under *2. What You Need For The Build*, you should get a Bluetooth module with a plastic cover around it. Because now we can simply glue this plastic cover into our housing with hot glue. The position is just above the two holes for the Arduino connectors.
@@ -273,18 +180,10 @@ Now that all the threads / screws for the parts are in place, we can simply put 
 > You may need to make some connection cables out of the jumper cables in order to be able to connect everything together.
 
 
-<img src="https://burle.me/api/images/ex-or-shock-cup-inside-3.png" width="800" height="550"/>
-
 ##### 3.7.2.1 Transformer Installation
 The transformer is not glued into the housing, but just held in place with Plasticine. Just put the transformer's wires through the two holes, one on the left and one on the right, then secure it with Plasticine. I also attached the high voltage cables with Plasticine. Now you can connect the transformer to the relay and the 9 volt battery.
 ##### 3.7.2.2 Handle Installation
-
-<img src="https://burle.me/api/images/ex-or-shock-handle-1.png" width="500" height="650"/>
-
 For the handle I just used some aluminum foil and folded it until I got a nice layer. Then I stripped the cables from the transformer at the end so that the aluminum foil could be connected to the wires. Then I just glued the two pieces of aluminum foil in the right places, as you can see in the picture above and below.
-
-<img src="https://burle.me/api/images/ex-or-shock-handle-2.png" width="500" height="600"/>
-
 You grasp the handle so that the thumb goes to the left piece of aluminum foil and the rest of the hand to the right piece of aluminum foil.
 ## 3.8 Software
 You can find the program for the cup in the ExOrShock repository as it is described in *2. What You Need For The Build*.
@@ -292,8 +191,6 @@ You can find the program for the cup in the ExOrShock repository as it is descri
 As described below *1. How The Cup Works* at the beginning, the cup automatically calibrates the lowest value of the upper moisture sensor. This means that we don't have to worry about this value, but we also need the predetermined breaking values ​​of both sensors if we can say with certainty that the cup is empty (more liquid, lower values ​​/ less liquid, higher values).
 > You may now be wondering why we don't calibrate these values ​​right at the beginning when the cup is still empty. This is because the higher values ​​always differ between the liquid in the cup (some are stickier, e.g., beer) and the values ​​also vary from time to time due to the sensor itself.
 
-
-<img src="https://burle.me/api/images/ex-or-shock-program-1.png" width="500" height="450"/>
 
 We have to set a value manually in the program, as described in the comments of the program. To do this, open the ExOrShock program in the Arduino Studio software. Then you might want to use the moisture test program I wrote, which you can find in the ExOrShock repository under *\Project\Moisture_Level_Test*. This allows you to evaluate the values ​​yourself. Now just fill the cup with beer and empty it again. While doing this, observe the values ​​of both sensors. Mark the displayed value immediately after emptying the cup. And now set these two values ​​in the ExOrShock program. Then you may have to do a few tries and see if the values ​​are correct for use. After you've done this, you don't have to do it a second time. Your cup is now ready to use.
 ## 4. Usage
