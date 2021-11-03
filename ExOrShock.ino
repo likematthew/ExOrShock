@@ -4,17 +4,18 @@ bool setupStart = false;
 bool start = false;
 long startTime = 0;
 
-int valueUpperMax = 170; // Needs to be set manually
-int valueLowerMax = 160; // Needs to be set manually
+const int tolerance = 3;
+const int valueUpperMax = 170; // Needs to be set manually
+const int valueLowerMax = 160; // Needs to be set manually
 int valueUpperMin = 0; // Will be set automatically
 
-int  sensorUpper = A0;
-int  sensorLower = A1;
-int  shocker = 2;
+int sensorUpper = A0;
+int sensorLower = A1;
+int shocker = 2;
 
-int  LEDBlue = 5;
-int  LEDGreen = 6;
-int  LEDRed = 7;
+int LEDBlue = 5;
+int LEDGreen = 6;
+int LEDRed = 7;
 
 long LEDBlueTime = 0;
 bool LEDBlueBlink = false;
@@ -23,8 +24,8 @@ SoftwareSerial bt(10, 11);
 
 void setup()
 {
-  bt.begin(9600);
   Serial.begin(9600);
+  bt.begin(9600);
   
   pinMode(LEDBlue, OUTPUT);
   pinMode(LEDRed, OUTPUT);
@@ -52,6 +53,8 @@ void systemCheck()
 
 void calibration()
 {
+  Serial.println("== Start Calibration ==");
+  Serial.println("-- Measurements --");
   // Calibration of the minimal value
   int i = 0;
   while(i < 15)
@@ -64,9 +67,10 @@ void calibration()
     Serial.println(valueUpperMin);
     i++;
   }
-  valueUpperMin = (valueUpperMin / i) + 2; // The 2 is for tolerance
+  valueUpperMin = (valueUpperMin / i) + tolerance;
+  Serial.println("-- Upper Value Min --");
   Serial.println(valueUpperMin);
-  Serial.println();
+  Serial.println("== End Calibration ==");
 }
 
 void loop() 
@@ -87,16 +91,19 @@ void loop()
     }
     int seconds = input.toInt();
     setupStart = true;
+    Serial.println("== Start Loop ==");
+    Serial.println("-- Seconds --");
     Serial.println(seconds);
+    Serial.println("-- Measurements --");
     
     while(setupStart)
     {
       // Reading values from moisture sensors
       int valueUpper = analogRead(sensorUpper);
       int valueLower = analogRead(sensorLower);
+      Serial.println("-- Values -- ");
       Serial.println(valueUpper);
       Serial.println(valueLower);
-      Serial.println();
       
       if(!start)
       {
@@ -161,6 +168,7 @@ void stopShocking()
 
 void endDrinking()
 {
+  Serial.println("== Stop Loop ==");
   digitalWrite(LEDBlue, LOW);
   setupStart = false;
   start = false;   

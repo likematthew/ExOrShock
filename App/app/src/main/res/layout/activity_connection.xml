@@ -2,8 +2,46 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ConnectionActivity">
+
+    <ListView
+        android:id="@+id/listMessages"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:background="@color/teal_700"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/editSeconds"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editSeconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/buttonSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/purple_500"
+        android:text="@string/send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editSeconds"
+        app:layout_constraintTop_toBottomOf="@+id/listMessages" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

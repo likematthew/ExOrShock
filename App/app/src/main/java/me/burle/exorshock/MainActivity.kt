@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, ConnectionActivity::class.java)
                 intent.putExtra("device", parent.getItemAtPosition(position) as BluetoothDevice)
                 startActivity(intent)
-                Toast.makeText(this, "Connecting ...", Toast.LENGTH_SHORT).show()
                 true
             }
         } else {
