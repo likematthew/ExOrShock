@@ -1,4 +1,4 @@
-int  sensorUpper  = A0;
+int  sensorUpper = A0;
 int  sensorLower = A1;
 
 void setup() {
