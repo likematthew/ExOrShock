@@ -10,8 +10,10 @@ This is a guide on how to create a cup that will shock you if you don't empty it
 Before you begin, you need to fill up the cup with water to the top. Then start the cup by switching on an external battery pack located on the bottom. After switching on the cup, all three LEDs (Blue, Green, Red) light up. Then the calibration mode starts, which calibrates the lowest value of the upper moisture level sensor, which is located directly in the cup.
 > As already mentioned, the cup must be filled with water for calibration.
 
+> There are two moisture level sensors in the cup, one on the top and one on the bottom, to be more accurate.
 
-During the calibration, the three LEDs start to light up 15 times from top to bottom. After the calibration, the blue LED flashes slowly. This means that the cup is waiting for a value from the Bluetooth module, which you have to connect to in order to send the seconds how long it should take to empty the cup. Now you can empty the cup and fill it with a drink of your choice. After the seconds have been received, the blue LED lights up continuously. Now someone can start drinking. When you tilt the cup to start drinking, the top moisture sensor will notice and the blue LED will start flashing again. The LED flashes faster and faster as the time runs out. If you have finished drinking the cup before the time is up, the green LED lights up. If you do not finish the cup before the time is up, the red LED will light up, and you will get shocked. Then the cycle starts again and the blue LED starts flashing until you send the time again via Bluetooth.
+
+During the calibration, the three LEDs on the lower half start to light up 15 times from top to bottom. After the calibration, the blue LED flashes slowly. This means that the cup is waiting for a value from the Bluetooth module, which you have to connect to in order to send the seconds how long it should take to empty the cup. Now you can empty the cup and fill it with a drink of your choice. After the seconds have been received, the blue LED lights up continuously. Now someone can start drinking. When you tilt the cup to start drinking, the top moisture level sensor will notice and the blue LED will start flashing again. The LED flashes faster and faster as the time runs out. If you have finished drinking the cup before the time is up, the green LED lights up. If you do not finish the cup before the time is up, the red LED will light up, and you will get shocked. Then the cycle starts again and the blue LED starts flashing until you send the time again via Bluetooth.
 ## 2. What You Need For The Build
 ### 2.1 Knowledge
 In the best case, you already have programming knowledge and also know what an Arduino is and how to use it. 
@@ -24,12 +26,13 @@ In the best case, you already have programming knowledge and also know what an A
 
 
 * At least two [Moisture Level Sensors](https://www.amazon.de/Capacitive-Moisture-Corrosion-Resistant-Raspberry/dp/B07FLR13FS/ref=sr_1_2?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=Arduino+Moisture+Level+Sensor&qid=1628542140&sr=8-2)
+	> You may want to buy more in case you mess one up.
 
 	> ![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-moisture-level-sensor-1.jpg =300x200)
 
 
 * A [DSD TECH HC-06 Bluetooth Module](https://www.amazon.de/s?k=DSD+TECH+HC-06+Bluetooth+Module&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss)
-	> With a plastic case.
+	> At best with a plastic case so you are able to install it into the cup.
 
 
 * A [5 Volt Relay](https://www.amazon.de/s?k=5+Volt+Relay&__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&ref=nb_sb_noss_2)
@@ -134,14 +137,14 @@ You need the following files from the ExOrShock [repository](https://github.com/
 
 ![Circuit Diagram](https://burle.me/api/images/ex-or-shock-fritzing-1.jpg)
 
-This is an overview of how all the different parts connect together and what pins each part uses.
+This is an overview of how all the different parts are connected with each other and what pins each part uses. In the Arduino program the pins are also set like in this image.
 ### 3.2 Components
 
 ![Components](https://burle.me/api/images/ex-or-shock-cup-inside-3.jpg)
 
-Here you can see how all components have to be placed in the housing. In case you are wondering why the Bluetooth module is not checked, it is because it is right under the relay. The 9 volt battery adapter with the battery is glued to the cover of the housing and has its place opposite the transformer. Don't get confused by the transformer's appearance, in this picture I've already covered it with Plasticine to insulate it. Below the relay and the Bluetooth module are the USB hub and the power input of the Arduino. On the opposite side are the three holes for the LEDs. In front of the LED board is the hole for the moisture sensor cables that come out of the cup. The transformer has a hole in the housing on the left and right for its two high-voltage cables. I also insulated these two cables with Plasticine.
+Here you can see how all components have to be placed in the housing. In case you are wondering why the Bluetooth module is not checked, it is because it is right under the relay. The 9 volt battery adapter with the battery is glued to the cover of the housing and has its place opposite the transformer. Don't get confused by the transformer's appearance, in this picture I've already covered it with Plasticine to insulate it. Below the relay and the Bluetooth module are the USB hub and the power input of the Arduino. On the opposite side are the three holes for the LEDs. In front of the LED board is the hole for the moisture level sensor cables that come out of the cup. The transformer has a hole in the housing on the left and right for its two high-voltage cables. I also insulated these two cables with Plasticine.
 ### 3.3 Housing Preparation
-The housing must be 3D printed from the two 3D model files listed under *2.4 Project Files* (Cover.stl, Housing.stl). You can print these with your own 3D printer or send them to an online print provider. The material you use is your choice.
+The housing must be 3D printed from the two 3D model files listed under *2.4 Project Files* (Cover.stl, Housing.stl). You can print these with your own 3D printer or send them to an online printing provider. The material you use is your choice.
 > The material should be some kind of plastic.
 
 
@@ -180,7 +183,7 @@ Lastly, I applied hot glue to all the parts on the lower side of the board to is
 
 ![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-1.jpg =500x650)
 
-Since we are going to glue both moisture sensors into the cup and route the cables through two holes to bring them outside, we need to remove the white adapter plastic that you can see in the first picture. For this, I just used pliers to tear it off. The three remaining pins can be made hot and simply pulled out. Now you should have three holes at the end of the humidity sensor, one for GND, one for the voltage input (VCC) and one for measuring (AOUT).
+Since we are going to glue both moisture level sensors into the cup and route the cables through two holes to bring them outside, we need to remove the white adapter plastic that you can see in the first picture. For this, I just used pliers to tear it off. The three remaining pins can be made hot and simply pulled out. Now you should have three holes at the end of the humidity sensor, one for GND, one for the voltage input (VCC) and one for measuring (AOUT).
 
 ![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-2.jpg =500x500)
 
@@ -189,7 +192,7 @@ You can now solder your cables into all three holes, as you can see in the pictu
 
 > Also use cables without a plug at the end or remove them, as the cable may then not fit into the hole in the housing where it has to go through. You can solder the connectors to the cables after:
 
-> * The moisture sensors have been built into the cup
+> * The moisture level sensors have been built into the cup
 
 > * The plus and minus cables of both sensors have been connected to one another
 
@@ -200,11 +203,11 @@ You can now solder your cables into all three holes, as you can see in the pictu
 
 ![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-moisture-level-sensor-3.jpg =500x275)
 
-I also heat glued all the electrical components to the top of the moisture sensor to make them waterproof.
+I also heat glued all the electrical components to the top of the moisture level sensor to make them waterproof.
 
 ![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-moisture-level-sensor-4.jpg =500x300)
 
-In the end, both moisture sensors should look something like this.
+In the end, both moisture level sensors should look something like this.
 ### 3.5 Cover
 
 ![Threads and Screws](https://burle.me/api/images/ex-or-shock-threads-1.jpg =300x150)
@@ -228,7 +231,7 @@ Now you can hot glue the 9 volt battery adapter on the inside of the cover. Glue
 
 ![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-1.jpg =500x650)
 
-After both moisture level sensors are prepared, they need to be glued into the cup. For this, we use the flat side with the measurements on it. First, the lower moisture sensor has to be glued into the cup. To do this, I set the sensor to the lowest possible position and then marked the position on the outside where cables need to go through. I burned the hole inside with the soldering iron. After that, I pulled the wires through the hole and put hot glue on the side of the sensor that was going to be glued into the cup. Then I just pressed the sensor against the inside wall of the cup.
+After both moisture level sensors are prepared, they need to be glued into the cup. For this, we use the flat side with the measurements on it. First, the lower moisture level sensor has to be glued into the cup. To do this, I set the sensor to the lowest possible position and then marked the position on the outside where cables need to go through. I burned the hole inside with the soldering iron. After that, I pulled the wires through the hole and put hot glue on the side of the sensor that was going to be glued into the cup. Then I just pressed the sensor against the inside wall of the cup.
 > Stick the sensor so that it is tilted a bit away from the cup so that no liquid gets stuck behind it, because this can lead to incorrect measurements.
 
 
@@ -238,7 +241,7 @@ This is how it should look like from the outside.
 
 ![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-3.jpg =500x625)
 
-The other moisture sensor should be placed at the very top of the cup as you can see on the hot glue in the picture above.
+The other moisture level sensor should be placed at the very top of the cup as you can see on the hot glue in the picture above.
 
 ![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-4.jpg =500x650)
 
@@ -302,7 +305,7 @@ You grasp the handle so that the thumb goes to the left piece of aluminum foil a
 ## 3.8 Software
 You can find the program for the cup in the ExOrShock repository as it is described in *2. What You Need For The Build*.
 ### 3.8.1 Setting The Moisture Level Sensor Values
-As described below *1. How The Cup Works* at the beginning, the cup automatically calibrates the lowest value of the upper moisture sensor. This means that we don't have to worry about this value, but we also need the predetermined breaking values ​​of both sensors if we can say with certainty that the cup is empty (more liquid, lower values ​​/ less liquid, higher values).
+As described below *1. How The Cup Works* at the beginning, the cup automatically calibrates the lowest value of the upper moisture level sensor. This means that we don't have to worry about this value, but we also need the predetermined breaking values ​​of both sensors if we can say with certainty that the cup is empty (more liquid, lower values ​​/ less liquid, higher values).
 > You may now be wondering why we don't calibrate these values ​​right at the beginning when the cup is still empty. This is because the higher values ​​always differ between the liquid in the cup (some are stickier, e.g., beer) and the values ​​also vary from time to time due to the sensor itself.
 
 
