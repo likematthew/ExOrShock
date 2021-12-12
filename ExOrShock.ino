@@ -5,8 +5,8 @@ bool start = false;
 long startTime = 0;
 
 const int tolerance = 3;
-const int valueUpperMax = 270; // Needs to be set manually
-const int valueLowerMax = 215; // Needs to be set manually
+const int valueUpperMax = 258; // Needs to be set manually
+const int valueLowerMax = 225; // Needs to be set manually
 int valueUpperMin = 0; // Will be set automatically
 
 int sensorUpper = A0;

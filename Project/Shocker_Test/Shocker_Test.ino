@@ -5,9 +5,8 @@ void setup() {
 }
 
 void loop() {
-  delay(10000);
+  delay(5000);
   digitalWrite(shocker, HIGH);
   delay(100);
   digitalWrite(shocker, LOW);
-  delay(10000);
 }
