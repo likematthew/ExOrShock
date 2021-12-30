@@ -5,9 +5,10 @@ bool start = false;
 long startTime = 0;
 
 const int tolerance = 3;
-const int valueUpperMax = 258; // Needs to be set manually
-const int valueLowerMax = 225; // Needs to be set manually
-int valueUpperMin = 0; // Will be set automatically
+const int valueUpperEnd = 258; // Needs to be set manually
+const int valueLowerEnd = 220; // Needs to be set manually
+int valueUpperFull = 0; // Will be set automatically when the cup is full with water at the beginning
+int valueLowerFull = 0; // Will be set automatically when the cup is full with water at the beginning
 
 int sensorUpper = A0;
 int sensorLower = A1;
@@ -63,17 +64,24 @@ void calibration()
     LED(LEDGreen, 200);
     LED(LEDRed, 200);
     delay(200);
-    valueUpperMin += analogRead(sensorUpper);
-    Serial.println(valueUpperMin);
+    valueUpperFull += analogRead(sensorUpper);
+    delay(25);
+    valueLowerFull += analogRead(sensorLower);
+    Serial.println(valueUpperFull);
+    Serial.println(valueLowerFull);
+    Serial.println("");
     i++;
   }
-  valueUpperMin = (valueUpperMin / i) + tolerance;
-  Serial.println("-- Upper Value Min --");
-  Serial.println(valueUpperMin);
+  valueUpperFull = (valueUpperFull / i);
+  valueLowerFull = (valueLowerFull / i);
+  Serial.println("-- Value Upper Full --");
+  Serial.println(valueUpperFull);
+  Serial.println("-- Value Lower Full --");
+  Serial.println(valueLowerFull);
   Serial.println("== End Calibration ==");
 }
 
-void loop() 
+void loop()
 {
   // Blue LED blinking while waiting for Bluetooth data
   delay(500);
@@ -98,17 +106,32 @@ void loop()
     
     while(setupStart)
     {
-      // Reading values from moisture sensors
-      int valueUpper = analogRead(sensorUpper);
-      int valueLower = analogRead(sensorLower);
+      // Reading values from moisture level sensors 10 times in a loop to get more stable measurements
+      int a = 0;
+      int valueUpper = 0;
+      int valueLower = 0;
+      do
+      {
+        checkLEDBlue(seconds);
+        delay(25);
+        valueUpper += analogRead(sensorUpper);
+        checkLEDBlue(seconds);
+        delay(25);
+        valueLower += analogRead(sensorLower);
+        a++;
+      }
+      while(a < 10);
+      valueUpper = valueUpper / 10;
+      valueLower = valueLower / 10;
       Serial.println("-- Values -- ");
       Serial.println(valueUpper);
       Serial.println(valueLower);
+      Serial.println("");
       
       if(!start)
       {
         // Starting when the person starts drinking
-        if(valueUpper < valueUpperMin)
+        if(valueUpper < valueUpperFull + tolerance)
         {
           start = true;
           startTime = millis();
@@ -119,22 +142,8 @@ void loop()
       else
       {
         int sec = (millis() - startTime) / 1000;
-        int blinkingTime = 50 + (float)(seconds - sec) / (float)seconds * 250;
-        
-        // Blue LED blinking faster while drinking
-        if((millis() - LEDBlueTime) > blinkingTime)
-        {
-          LEDBlueTime = millis();
-          if(LEDBlueBlink) {
-            digitalWrite(LEDBlue,  HIGH);
-          } else {
-            digitalWrite(LEDBlue,  LOW);
-          }
-          LEDBlueBlink = !LEDBlueBlink;
-        }
-        
         // WIN
-        if(valueUpper > valueUpperMax && valueLower > valueLowerMax && sec < seconds - 1)
+        if(valueUpper > valueUpperEnd && valueLower > valueLowerEnd && sec < seconds - 1)
         {
           digitalWrite(LEDBlue,  LOW);
           LED(LEDGreen, 10000);
@@ -156,14 +165,37 @@ void loop()
 
 void startShocking()
 {
-  digitalWrite(LEDRed,  HIGH);
+  digitalWrite(LEDRed, HIGH);
   digitalWrite(shocker, HIGH); 
 }
 
 void stopShocking()
 {
   digitalWrite(shocker, LOW);
-  digitalWrite(LEDRed,  LOW);
+  digitalWrite(LEDRed, LOW);
+}
+
+void checkLEDBlue(int seconds)
+{
+  if(start)
+  {
+    // Blue LED blinking faster while drinking
+    int sec = (millis() - startTime) / 1000;
+    int blinkingTime = 50 + (float)(seconds - sec) / (float)seconds * 250;
+    if((millis() - LEDBlueTime) > blinkingTime)
+    {
+      LEDBlueTime = millis();
+      if(LEDBlueBlink) 
+      {
+        digitalWrite(LEDBlue, HIGH);
+      } 
+      else 
+      {
+        digitalWrite(LEDBlue, LOW);
+      }
+      LEDBlueBlink = !LEDBlueBlink;
+    }
+  }
 }
 
 void endDrinking()
