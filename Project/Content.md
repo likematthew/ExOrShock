@@ -5,7 +5,7 @@ This is a guide on how to create a cup that will shock you if you don't empty it
 ***I am not responsible for any damage caused by attempting to recreate or use the cup with these instructions.***
 ## 1. How The Cup Works
 
-![ExOrShock](https://burle.me/api/images/ex-or-shock-cup-outside-1.jpg)
+![ExOrShock](https://burle.me/api/images/ex-or-shock-cup-outside-1.jpg =800x1000)
 
 Before you begin, you need to fill up the cup with water to the top. Then start the cup by switching on an external battery pack located on the bottom. After switching on the cup, all three LEDs (Blue, Green, Red) light up. Then the calibration mode starts, which calibrates the lowest value of the upper moisture level sensor, which is located directly in the cup.
 > As already mentioned, the cup must be filled with water for calibration.
@@ -126,6 +126,18 @@ You need the following files from the ExOrShock [repository](https://github.com/
 	> The program that is running on the Arduino.
 
 
+* Moisture_Level_Test.ino
+	> Can be found in /Project/Moisture_Level_Test
+
+	> A test program for the moisture level sensors.
+
+
+* Shocker_Test.ino
+	> Can be found in /Project/Shocker_Test
+
+	> A test program for the shocker.
+
+
 * Fritzing.fzz
 	> Can be found in /Project.
 
@@ -140,7 +152,7 @@ You need the following files from the ExOrShock [repository](https://github.com/
 This is an overview of how all the different parts are connected with each other and what pins each part uses. In the Arduino program the pins are also set like in this image.
 ### 3.2 Components
 
-![Components](https://burle.me/api/images/ex-or-shock-cup-inside-3.jpg)
+![Components](https://burle.me/api/images/ex-or-shock-cup-inside-3.jpg =800x550)
 
 Here you can see how all components have to be placed in the housing. In case you are wondering why the Bluetooth module is not checked, it is because it is right under the relay. The 9 volt battery adapter with the battery is glued to the cover of the housing and has its place opposite the transformer. Don't get confused by the transformer's appearance, in this picture I've already covered it with Plasticine to insulate it. Below the relay and the Bluetooth module are the USB hub and the power input of the Arduino. On the opposite side are the three holes for the LEDs. In front of the LED board is the hole for the moisture level sensor cables that come out of the cup. The transformer has a hole in the housing on the left and right for its two high-voltage cables. I also insulated these two cables with Plasticine.
 ### 3.3 Housing Preparation
@@ -181,11 +193,11 @@ Lastly, I applied hot glue to all the parts on the lower side of the board to is
 
 ![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-moisture-level-sensor-1.jpg =500x350)
 
-![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-1.jpg =500x650)
+![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-1.jpg =500x600)
 
 Since we are going to glue both moisture level sensors into the cup and route the cables through two holes to bring them outside, we need to remove the white adapter plastic that you can see in the first picture. For this, I just used pliers to tear it off. The three remaining pins can be made hot and simply pulled out. Now you should have three holes at the end of the humidity sensor, one for GND, one for the voltage input (VCC) and one for measuring (AOUT).
 
-![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-2.jpg =500x500)
+![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-2.jpg =500x450)
 
 You can now solder your cables into all three holes, as you can see in the picture above. Solder it so that the wires are on the bottom of the sensor.
 > Leave the cables long enough, as you will have to run the cables through the housing after installation.
@@ -235,7 +247,7 @@ After both moisture level sensors are prepared, they need to be glued into the c
 > Stick the sensor so that it is tilted a bit away from the cup so that no liquid gets stuck behind it, because this can lead to incorrect measurements.
 
 
-![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-2.jpg =500x650)
+![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-2.jpg =500x450)
 
 This is how it should look like from the outside.
 

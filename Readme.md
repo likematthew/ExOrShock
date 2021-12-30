@@ -97,6 +97,16 @@ You need the following files from the ExOrShock [repository](https://github.com/
 	> The program that is running on the Arduino.
 
 
+* Moisture_Level_Test.ino
+	> Can be found in /Project/Moisture_Level_Test
+	> A test program for the moisture level sensors.
+
+
+* Shocker_Test.ino
+	> Can be found in /Project/Shocker_Test
+	> A test program for the shocker.
+
+
 * Fritzing.fzz
 	> Can be found in /Project.
 	> This is the circuit diagram.
