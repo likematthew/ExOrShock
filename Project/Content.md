@@ -251,7 +251,7 @@ After both moisture level sensors are prepared, they need to be glued into the c
 
 This is how it should look like from the outside.
 
-![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-3.jpg =500x625)
+![Moisture Level Sensor](https://burle.me/api/images/ex-or-shock-housing-moisture-level-sensor-3.jpg =500x600)
 
 The other moisture level sensor should be placed at the very top of the cup as you can see on the hot glue in the picture above.
 
